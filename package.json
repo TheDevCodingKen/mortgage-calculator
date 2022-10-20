@@ -1,13 +1,13 @@
 {
-  "name": "origin-react-starter",
+  "name": "react-mortgage-calculator",
   "author": "TheDevCodingKen",
   "version": "0.1.0",
-  "description": "Base application setup for creating a new react project.",
+  "description": "Mortgage calculator form utilizing React.",
   "private": true,
   "main": "server/index.js",
   "repository": {
     "type": "git",
-    "url": "git://"
+    "url": "https://github.com/TheDevCodingKen/mortgage-calculator"
   },
   "license": "MIT",
   "scripts": {
