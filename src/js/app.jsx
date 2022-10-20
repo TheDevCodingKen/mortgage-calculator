@@ -8,11 +8,12 @@ export default class App extends React.Component {
       balance: '',
       rate: '',
       term: 15,
+      monthlyPayment: ''
     };
 
+    // Bind this keyword
     this.handleInputChange = this.handleInputChange.bind(this);
     this.calculate = this.calculate.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
  // Function to update state values when an input changes, using event binding
@@ -22,30 +23,24 @@ export default class App extends React.Component {
     });
   }
 
+  // Function to determine the mortgage payment
   calculate() {
     const { balance, rate, term } = this.state;
-    console.log(balance, rate, term);
-    console.log('Hello Word');
-    // if (balance === 0 || rate === 0) {
-    //   document.getElementById('output').innerText = 'Please enter a valid balance and rate.';
-    // } else {
-    //   const principal = balance;
-    //   const monthlyInterestRate = (rate / 100) / 12;
-    //   const totalNumberOfMonths = term * 12;
-    //   const numerator = monthlyInterestRate * ((1 + monthlyInterestRate) ** totalNumberOfMonths);
-    //   const denominator = ((1 + monthlyInterestRate) ** totalNumberOfMonths) - 1;
-    // }
-    // const monthlyPayment = principal * (numerator / denominator);
-    // return monthlyPayment;
-  }
+    if (balance === 0 || rate === 0) {
+      document.getElementById('output').innerText = 'Please enter a valid balance and rate.';
+    }
+    const principal = balance;
+    const monthlyInterestRate = (rate / 100) / 12;
+    const totalNumberOfMonths = term * 12;
+    const numerator = monthlyInterestRate * ((1 + monthlyInterestRate) ** totalNumberOfMonths);
+    const denominator = ((1 + monthlyInterestRate) ** totalNumberOfMonths) - 1;
+    const monthlyPayment = principal * (numerator / denominator);
 
-  // handleClick(e) {
-  //   e.preventDefault;
-  //   const result = this.calculate();
-  //   this.setState ({
-  //     output: `${result.toFixed(2)} is your payment.`
-  //   })
-  // }
+    // Change the state to bind the mortgage payment
+    this.setState({
+      monthlyPayment: `$${monthlyPayment.toFixed(2)} is your payment.`
+    });
+  }
 
   render() {
     return (
@@ -67,8 +62,10 @@ export default class App extends React.Component {
           <option value='30'>30</option>
         </select>
         <br />
-        <button name='submit' type='submit' onClick={ () => this.calculate }>Submit</button>
-        <div name='output' id='output' />
+        <div name='output' id='output'>
+          <p>{this.state.monthlyPayment}</p>
+          <button name='submit' onClick={ () => this.calculate() }>Submit</button>
+        </div>
       </div>
     );
   }
