@@ -9,7 +9,6 @@
     "type": "git",
     "url": "https://github.com/TheDevCodingKen/mortgage-calculator"
   },
-  "license": "MIT",
   "scripts": {
     "build": "npm run less && webpack --mode development",
     "start": "npm run build && node server/index.js",
